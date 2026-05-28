@@ -17,8 +17,7 @@ const Hero = () => {
         {/* ── Left: text ── */}
         <div className="flex flex-col gap-5 max-w-2xl large:max-w-xl flex-shrink-0">
           <div className="animate-fade-in">
-            <span className="inline-flex items-center gap-2 bg-[#f97316]/15 border border-[#f97316]/25 text-[#f97316] text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#f97316] animate-pulse" />
+            <span className="inline-flex items-center bg-[#f97316]/15 border border-[#f97316]/25 text-[#f97316] text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full">
               UK-Based HVAC Specialists
             </span>
           </div>
