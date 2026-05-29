@@ -24,6 +24,9 @@ async function getRegionMap(cacheId: string) {
     regionMapUpdated < Date.now() - 3600 * 1000
   ) {
     try {
+      const controller = new AbortController()
+      const timeout = setTimeout(() => controller.abort(), 3000)
+
       // Fetch regions from Medusa. We can't use the JS client here because middleware is running on Edge and the client needs a Node environment.
       const response = await fetch(`${BACKEND_URL}/store/regions`, {
         method: "GET",
@@ -35,7 +38,9 @@ async function getRegionMap(cacheId: string) {
           tags: [`regions-${cacheId}`],
         },
         cache: "force-cache",
+        signal: controller.signal,
       })
+      clearTimeout(timeout)
 
       if (!response.ok) {
         return new Map<string, HttpTypes.StoreRegion>()
