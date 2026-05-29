@@ -19,9 +19,9 @@ export default async function Nav() {
       <header className="relative h-16 mx-auto bg-[#0f2a4a] border-b border-[#1e3f6f]">
         <nav className="content-container flex items-center justify-between w-full h-full">
 
-          {/* Left: hamburger */}
+          {/* Left: hamburger (mobile only) */}
           <div className="flex-1 basis-0 h-full flex items-center">
-            <div className="h-full">
+            <div className="h-full small:hidden">
               <SideMenu regions={regions} locales={locales} currentLocale={currentLocale} />
             </div>
           </div>

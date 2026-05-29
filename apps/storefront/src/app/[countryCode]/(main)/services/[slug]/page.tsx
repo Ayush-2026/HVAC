@@ -155,9 +155,15 @@ export default async function ServiceDetailPage({ params }: Props) {
                 <p className="text-xs text-gray-400 mt-1">Final price confirmed at booking</p>
               </div>
               <div className="flex flex-col gap-2 w-full small:w-auto">
-                <button className="w-full small:w-auto bg-[#f97316] hover:bg-[#ea6c0a] text-white font-bold px-8 py-4 rounded-xl transition-colors duration-200 text-base">
+                <LocalizedClientLink
+                  href={`/services/${service.slug}/book`}
+                  className="w-full small:w-auto flex items-center justify-center gap-2 bg-[#f97316] hover:bg-[#ea6c0a] text-white font-bold px-8 py-4 rounded-xl transition-colors duration-200 text-base"
+                >
                   Book This Service
-                </button>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </LocalizedClientLink>
                 <a
                   href="tel:08001234567"
                   className="w-full small:w-auto flex items-center justify-center gap-2 border border-[#0f2a4a] text-[#0f2a4a] hover:bg-[#0f2a4a] hover:text-white font-semibold px-8 py-3 rounded-xl transition-colors duration-200 text-sm"

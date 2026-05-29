@@ -86,7 +86,12 @@ async function getCountryCode(
     .get("x-vercel-ip-country")
     ?.toLowerCase()
 
-  if (urlCountryCode && regionMap.has(urlCountryCode)) {
+  const isMapEmpty = !regionMap.keys().next().value
+
+  if (isMapEmpty) {
+    // Backend offline — trust URL country code if present, otherwise use default
+    countryCode = urlCountryCode || DEFAULT_REGION
+  } else if (urlCountryCode && regionMap.has(urlCountryCode)) {
     countryCode = urlCountryCode
   } else if (cloudflareCountryCode && regionMap.has(cloudflareCountryCode)) {
     countryCode = cloudflareCountryCode

@@ -1,40 +1,13 @@
-"use client"
-
-import Image from "next/image"
-import { useState } from "react"
-
 const brands = [
-  { name: "Daikin",              domain: "daikin.com" },
-  { name: "Mitsubishi Electric", domain: "mitsubishielectric.com" },
-  { name: "Honeywell",           domain: "honeywell.com" },
-  { name: "Vaillant",            domain: "vaillant.com" },
-  { name: "Worcester Bosch",     domain: "worcester-bosch.co.uk" },
-  { name: "Panasonic",           domain: "panasonic.com" },
-  { name: "LG",                  domain: "lg.com" },
-  { name: "Samsung",             domain: "samsung.com" },
+  { name: "Daikin",              abbr: "DAI",  color: "#003087" },
+  { name: "Mitsubishi Electric", abbr: "ME",   color: "#e60012" },
+  { name: "Honeywell",           abbr: "HW",   color: "#fc4c02" },
+  { name: "Vaillant",            abbr: "VAI",  color: "#006400" },
+  { name: "Worcester Bosch",     abbr: "WB",   color: "#003087" },
+  { name: "Panasonic",           abbr: "PAN",  color: "#0044a0" },
+  { name: "LG",                  abbr: "LG",   color: "#a50034" },
+  { name: "Samsung",             abbr: "SAM",  color: "#1428a0" },
 ]
-
-const BrandLogo = ({ name, domain }: { name: string; domain: string }) => {
-  const [imgError, setImgError] = useState(false)
-
-  return (
-    <div className="flex items-center justify-center px-6 py-4 bg-white border border-gray-200 rounded-xl hover:border-[#f97316] hover:shadow-sm transition-all duration-200 min-w-[140px] h-[72px]">
-      {!imgError ? (
-        <Image
-          src={`https://logo.clearbit.com/${domain}`}
-          alt={`${name} logo`}
-          width={100}
-          height={40}
-          className="object-contain max-h-10 w-auto"
-          onError={() => setImgError(true)}
-          unoptimized
-        />
-      ) : (
-        <span className="text-[#0f2a4a] font-semibold text-sm">{name}</span>
-      )}
-    </div>
-  )
-}
 
 const BrandsSection = () => {
   return (
@@ -43,9 +16,23 @@ const BrandsSection = () => {
         <p className="text-center text-gray-400 text-sm font-medium uppercase tracking-widest mb-8">
           Authorised Stockist of Leading Brands
         </p>
-        <div className="flex flex-wrap justify-center items-center gap-4">
+        <div className="flex flex-wrap justify-center items-center gap-3">
           {brands.map((brand) => (
-            <BrandLogo key={brand.name} name={brand.name} domain={brand.domain} />
+            <div
+              key={brand.name}
+              className="flex items-center gap-3 px-5 py-3 bg-white border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-sm transition-all duration-200 min-w-[148px]"
+            >
+              {/* Brand initial badge */}
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-[10px] font-black tracking-tight flex-shrink-0"
+                style={{ backgroundColor: brand.color }}
+              >
+                {brand.abbr}
+              </div>
+              <span className="text-[#0f2a4a] font-semibold text-sm leading-tight">
+                {brand.name}
+              </span>
+            </div>
           ))}
         </div>
       </div>
