@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd apps/storefront && npm run build",
+  "outputDirectory": "apps/storefront/.next",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "devCommand": "cd apps/storefront && npm run dev"
+}
