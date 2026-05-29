@@ -5,10 +5,8 @@ import { Text, clx } from "@modules/common/components/ui";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 
 export default async function Footer() {
-  const { collections } = await listCollections({
-    fields: "*products",
-  });
-  const productCategories = await listCategories();
+  const { collections } = await listCollections({ fields: "*products" }).catch(() => ({ collections: [] }));
+  const productCategories = await listCategories().catch(() => []);
 
   return (
     <footer className="bg-[#0a1f38] w-full">
