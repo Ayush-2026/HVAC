@@ -15,7 +15,7 @@ export default async function Cart() {
     return notFound()
   })
 
-  const customer = await retrieveCustomer()
+  const customer = await retrieveCustomer().catch(() => null)
 
   return <CartTemplate cart={cart} customer={customer} />
 }
