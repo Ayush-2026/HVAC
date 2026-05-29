@@ -9,9 +9,9 @@ import CategoryDropdown from "@modules/layout/components/category-dropdown"
 
 export default async function Nav() {
   const [regions, locales, currentLocale] = await Promise.all([
-    listRegions().then((regions: StoreRegion[]) => regions),
-    listLocales(),
-    getLocale(),
+    listRegions().then((regions: StoreRegion[]) => regions).catch(() => []),
+    listLocales().catch(() => []),
+    getLocale().catch(() => null),
   ])
 
   return (
