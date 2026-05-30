@@ -8,6 +8,8 @@ type Props = {
   params: Promise<{ handle: string; countryCode: string }>
 }
 
+export const dynamic = "force-dynamic"
+
 export async function generateStaticParams() {
   return hvacCategories.map((c) => ({ handle: c.handle }))
 }

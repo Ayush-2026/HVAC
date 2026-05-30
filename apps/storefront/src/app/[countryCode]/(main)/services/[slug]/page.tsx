@@ -14,6 +14,8 @@ type Props = {
   params: Promise<{ slug: string; countryCode: string }>
 }
 
+export const dynamic = "force-dynamic"
+
 export async function generateStaticParams() {
   return hvacCategories
     .flatMap((c) => c.services)
