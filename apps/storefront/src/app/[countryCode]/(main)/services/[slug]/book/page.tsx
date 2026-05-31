@@ -1,17 +1,11 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
-import {
-  getServiceBySlug,
-  getCategoryForService,
-  hvacCategories,
-} from "@lib/mock/hvac-data"
+import { getServiceBySlug, getCategoryForService } from "@lib/mock/hvac-data"
 import BookingForm from "@modules/booking/components/booking-form"
 
-type Props = { params: Promise<{ slug: string; countryCode: string }> }
+export const dynamic = "force-dynamic"
 
-export async function generateStaticParams() {
-  return hvacCategories.flatMap(c => c.services).map(s => ({ slug: s.slug }))
-}
+type Props = { params: Promise<{ slug: string; countryCode: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
@@ -25,16 +19,15 @@ export default async function BookPage({ params }: Props) {
   const service = getServiceBySlug(slug)
   if (!service) notFound()
 
-  const category = getCategoryForService(service.id) ?? null
-
+  const category = getCategoryForService(service!.id) ?? null
   const callOutCharge = 4900
-  const subtotal = service.price + callOutCharge
+  const subtotal = service!.price + callOutCharge
   const vat = Math.round(subtotal * 0.20)
   const total = subtotal + vat
 
   return (
     <BookingForm
-      service={service}
+      service={service!}
       category={category}
       countryCode={countryCode}
       pricing={{ callOutCharge, subtotal, vat, total }}
